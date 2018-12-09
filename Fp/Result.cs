@@ -4,9 +4,11 @@ using Fp.Infrastructure;
 
 namespace Fp
 {
-    [AsyncMethodBuilder(typeof(ResultMethodBuilder<>))]
+    [AsyncMethodBuilder(typeof(AsyncResultMethodBuilder<>))]
     public struct Result<T>
     {
+        internal T Value { get; }
+
         public Result(string error, T value = default(T))
         {
             Error = error;
@@ -14,8 +16,19 @@ namespace Fp
         }
 
         public string Error { get; }
-        public T Value { get; }
+
         public bool IsSuccess => Error == null;
+
+        public T GetValueOrThrow()
+        {
+            if (IsSuccess)
+            {
+                return Value;
+            }
+            
+            throw new InvalidOperationException($"{Error}");
+        }
+
         public ResultAwaiter<T> GetAwaiter() => new ResultAwaiter<T>(this);
     }
 

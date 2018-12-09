@@ -3,14 +3,14 @@ using System.Runtime.CompilerServices;
 
 namespace Fp.Infrastructure
 {
-    public class OptionMethodBuilder<T>
+    public class AsyncOptionMethodBuilder<T>
     {
         private Option<T> option = Option.None<T>();
         public Option<T> Task => option;
         
-        public static ResultMethodBuilder<T> Create()
+        public static AsyncResultMethodBuilder<T> Create()
         {
-            return new ResultMethodBuilder<T>();
+            return new AsyncResultMethodBuilder<T>();
         }
         
         public void Start<TStateMachine>(ref TStateMachine stateMachine)

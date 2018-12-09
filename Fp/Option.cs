@@ -4,7 +4,7 @@ using Fp.Infrastructure;
 
 namespace Fp
 {
-    [AsyncMethodBuilder(typeof(OptionMethodBuilder<>))]
+    [AsyncMethodBuilder(typeof(AsyncOptionMethodBuilder<>))]
     public struct Option<T>
     {
         public Option(bool isSome, T value = default)

@@ -12,8 +12,8 @@ namespace Fp.Infrastructure
             this.result = result;
         }
 
-        public bool IsCompleted => result.IsSuccess;
-        public T GetResult() => result.Value;
+        public bool IsCompleted => true;
+        public T GetResult() => result.GetValueOrThrow();
         public void OnCompleted(Action continuation) { }
     }
 }

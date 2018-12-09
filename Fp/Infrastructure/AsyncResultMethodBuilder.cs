@@ -3,14 +3,14 @@ using System.Runtime.CompilerServices;
 
 namespace Fp.Infrastructure
 {
-    public class ResultMethodBuilder<T>
+    public class AsyncResultMethodBuilder<T>
     {
         private Result<T> result = Result.Fail<T>("");
         public Result<T> Task => result;
         
-        public static ResultMethodBuilder<T> Create()
+        public static AsyncResultMethodBuilder<T> Create()
         {
-            return new ResultMethodBuilder<T>();
+            return new AsyncResultMethodBuilder<T>();
         }
         
         public void Start<TStateMachine>(ref TStateMachine stateMachine)
